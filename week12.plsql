@@ -1,4 +1,4 @@
-1)Write a pl/sql program to implement isnull() function.
+--1)Write a pl/sql program to implement isnull() function.
 DECLARE 
 a int ; 
 b int := 20; 
@@ -10,7 +10,7 @@ end if;
 END;
 
 
-2) Write a plsql program to implement coalesce() function.
+--2) Write a plsql program to implement coalesce() function.
 DECLARE 
 a int; 
 b int := 23; 
@@ -24,7 +24,7 @@ END IF;
 END;
 
 
-3) Write a pl/sql program to implement nullif() function.
+--3) Write a pl/sql program to implement nullif() function.
 DECLARE
 a varchar(20);  
 b varchar(20) := 'nooman';  
@@ -45,7 +45,7 @@ END;
 
 
 
-4) Write a pl/sql program to print 1 to 10 numbers using a simple loop.
+--4) Write a pl/sql program to print 1 to 10 numbers using a simple loop.
 DECLARE
 a number(5):=1;
 BEGIN
@@ -57,7 +57,7 @@ END LOOP;
 END;
 
 
-5) Write a pl/sql program to print 1 to 10 numbers using a while loop.
+--5) Write a pl/sql program to print 1 to 10 numbers using a while loop.
 DECLARE
 a number(5):=1;
 BEGIN
@@ -68,7 +68,7 @@ END LOOP;
 END;
 
 
-6) Write a pl/sql program to print 1 to 10 numbers using a for loop.
+--6) Write a pl/sql program to print 1 to 10 numbers using a for loop.
 BEGIN
 FOR a IN 1..10 LOOP
 dbms_output.put_line(a);
@@ -76,7 +76,7 @@ END LOOP;
 END;
 
 
-7)Write a pl/sql program to print 10 to 1 numbers using a simple loop.
+--7)Write a pl/sql program to print 10 to 1 numbers using a simple loop.
 DECLARE
 a number(5):=10;
 BEGIN
@@ -88,7 +88,7 @@ END LOOP;
 END;
 
 
-8)Write a pl/sql program to print 10 to 1 numbers using a while loop.
+--8)Write a pl/sql program to print 10 to 1 numbers using a while loop.
 DECLARE
 a number(5):=10;
 BEGIN
@@ -99,14 +99,14 @@ END LOOP;
 END;
 
 
-9)Write a pl/sql program to print 10 to 1 numbers using a for loop.
+--9)Write a pl/sql program to print 10 to 1 numbers using a for loop.
 BEGIN
 FOR a IN REVERSE 1..10 LOOP
 dbms_output.put_line(a);
 END  LOOP;
 END;
 
-10) Write a program to check if a number is palindrome or not using while loop.
+--10) Write a program to check if a number is palindrome or not using while loop.
 DECLARE
 num number; 
 original number; 
