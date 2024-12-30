@@ -1,4 +1,4 @@
-Creation of table Customers:
+--Creation of table Customers:
 
 CREATE TABLE Customers (
 Customer_id INT PRIMARY KEY,
@@ -8,7 +8,7 @@ Age INT CHECK (Age >= 0), -- Age cannot be negative
 Phone_num VARCHAR(20),
 C_Email VARCHAR(100) UNIQUE);
 
-2. Creation of table Cars:
+--2. Creation of table Cars:
 CREATE TABLE Car (
 Car_id INT PRIMARY KEY,
 Brand VARCHAR(50),
@@ -17,14 +17,14 @@ Year INT CHECK (Year > 1885), -- Cars were invented after 1885
 Colour VARCHAR(20),
 Price DECIMAL(10, 2) CHECK (Price >= 0) -- Price cannot be negative);
 
-3. Creation of table Inventory:
+--3. Creation of table Inventory:
 CREATE TABLE Inventory (
 Inventory_id INT PRIMARY KEY,
 Car_id INT,
 Quantity INT CHECK (Quantity >= 0), -- Quantity cannot be negative
 FOREIGN KEY (Car_id) REFERENCES Car(Car_id) ON DELETE CASCADE);
 
-4. Creation of table Orders:
+--4. Creation of table Orders:
 CREATE TABLE Orders (
 Order_id INT PRIMARY KEY,
 Order_date DATE,
@@ -34,7 +34,7 @@ be negative
 FOREIGN KEY (Customer_id) REFERENCES Customers(Customer_id) ON DELETE
 CASCADE);
 
-5. Creation of table Transactions:
+--5. Creation of table Transactions:
 CREATE TABLE Transactions (
 Transaction_id INT PRIMARY KEY,
 Car_id INT,
@@ -45,13 +45,13 @@ FOREIGN KEY (Car_id) REFERENCES Car(Car_id) ON DELETE CASCADE,
 FOREIGN KEY (Order_id) REFERENCES Orders(Order_id) ON DELETE
 CASCADE);
 
-6. Creation of table Manager:
+--6. Creation of table Manager:
 CREATE TABLE Manager (
 Employee_id INT PRIMARY KEY,
 Works_Present CHAR(1) CHECK (Works_Present IN ('Y', 'N'))
 -- Using 'Y' for TRUE and 'N' for FALSE);
 
-7. Insertion of records into Customers:
+--7. Insertion of records into Customers:
 INSERT INTO Customers VALUES (1, TO_DATE('1990-01-01', 'YYYY-MM-DD'),
 'Alice Smith', 34, '123-456-7890', 'alice@example.com');
 INSERT INTO Customers VALUES (2, TO_DATE('1985-02-15', 'YYYY-MM-DD'), 'Bob
@@ -93,7 +93,7 @@ INSERT INTO Customers VALUES (19, TO_DATE('1981-07-04', 'YYYY-MM-DD'),
 INSERT INTO Customers VALUES (20, TO_DATE('1999-08-17', 'YYYY-MM-DD'),
 'Timmy Turner', 25, '012-345-6780', 'timmy@example.com');
 
-8. Insertion of records into Cars:
+--8. Insertion of records into Cars:
 INSERT INTO Car VALUES (1, 'Toyota', 'Camry', 2020, 'White', 24000.00);
 INSERT INTO Car VALUES (2, 'Honda', 'Accord', 2019, 'Black', 22000.00);
 INSERT INTO Car VALUES (3, 'Ford', 'Mustang', 2021, 'Red', 35000.00);
@@ -115,7 +115,7 @@ INSERT INTO Car VALUES (18, 'Porsche', 'Cayenne', 2020, 'White', 85000.00);
 INSERT INTO Car VALUES (19, 'Jaguar', 'XF', 2019, 'Black', 60000.00);
 INSERT INTO Car VALUES (20, 'Volvo', 'XC90', 2021, 'Silver', 67000.00);
 
-9. Insertion of records into Inventory:
+--9. Insertion of records into Inventory:
 INSERT INTO Inventory VALUES (1, 1, 10);
 INSERT INTO Inventory VALUES (2, 2, 15);
 INSERT INTO Inventory VALUES (3, 3, 5);
@@ -137,7 +137,7 @@ INSERT INTO Inventory VALUES (18, 18, 3);
 INSERT INTO Inventory VALUES (19, 19, 2);
 INSERT INTO Inventory VALUES (20, 20, 1);
 
-10. Insertion of records into Orders:
+--10. Insertion of records into Orders:
 INSERT INTO Orders VALUES (1, TO_DATE('2023-01-01', 'YYYY-MM-DD'), 1,
 24000.00);
 INSERT INTO Orders VALUES (2, TO_DATE('2023-01-02', 'YYYY-MM-DD'), 2,
@@ -179,7 +179,7 @@ INSERT INTO Orders VALUES (19, TO_DATE('2023-01-19', 'YYYY-MM-DD'), 19,
 INSERT INTO Orders VALUES (20, TO_DATE('2023-01-20', 'YYYY-MM-DD'), 20,
 67000.00);
 
-11.Insertion of records into Transactions:
+--11.Insertion of records into Transactions:
 INSERT INTO Transactions VALUES (1, 1, 2000.00, 1);
 INSERT INTO Transactions VALUES (2, 2, 1800.00, 2);
 INSERT INTO Transactions VALUES (3, 3, 3000.00, 3);
@@ -201,7 +201,7 @@ INSERT INTO Transactions VALUES (18, 18, 7500.00, 18);
 INSERT INTO Transactions VALUES (19, 19, 5000.00, 19);
 INSERT INTO Transactions VALUES (20, 20, 6200.00, 20);
 
-12. Insertion of records into Manager:
+--12. Insertion of records into Manager:
 INSERT INTO Manager VALUES (1, 'Y');
 INSERT INTO Manager VALUES (2, 'N');
 INSERT INTO Manager VALUES (3, 'Y');
@@ -223,18 +223,16 @@ INSERT INTO Manager VALUES (18, 'N');
 INSERT INTO Manager VALUES (19, 'Y');
 INSERT INTO Manager VALUES (20, 'N');
 
-Queries
-Query1-Find the total revenue generated from each car model sold, including the total
-commission.
-SQL Commands:
+--Queries
+--Query1-Find the total revenue generated from each car model sold, including the total commission.
+--SQL Commands:
 SELECT c.Model, SUM(o.Total_amount) AS Total_Revenue, SUM(t.Commission) AS
 Total_Commission FROM Car c JOIN Transactions t ON c.Car_id = t.Car_id JOIN Orders o ON
 t.Order_id = o.Order_id
 GROUP BY c.Model
 ORDER BY Total_Revenue DESC;
 
-Query2-List the customers who purchased cars worth more than a specified amount, along with
-their details.
+--Query2-List the customers who purchased cars worth more than a specified amount, along with their details.
 SQL Commands:
 SELECT DISTINCT cu.Customer_id,
 cu.C_name,
@@ -246,8 +244,7 @@ JOIN Orders o ON cu.Customer_id = o.Customer_id
 WHERE o.Total_amount > 30000
 ORDER BY o.Total_amount DESC;
 
-Query3-Calculate the age of customers and categorise them into groups (e.g., '18-25', '26-35',
-etc.).
+--Query3-Calculate the age of customers and categorise them into groups (e.g., '18-25', '26-35', etc.).
 SQL Commands:
 SELECT CASE
 WHEN Age BETWEEN 18 AND 25 THEN '18-25'
@@ -267,8 +264,8 @@ ELSE '56+'
 END
 ORDER BY Age_Group;
 
-Query4-Get the top 3 customers based on the total amount spent on car purchases.
-SQL Commands:
+--Query4-Get the top 3 customers based on the total amount spent on car purchases.
+--SQL Commands:
 SELECT cu.Customer_id,
 cu.C_name,
 SUM(o.Total_amount) AS Total_Spent
@@ -278,7 +275,7 @@ GROUP BY cu.Customer_id, cu.C_name
 ORDER BY Total_Spent DESC
 FETCH FIRST 3 ROWS ONLY;
 
-Query5-Find the least expensive car available in the inventory.
+--Query5-Find the least expensive car available in the inventory.
 SQL Commands:
 SELECT c.Brand,
 c.Model,
@@ -290,7 +287,7 @@ GROUP BY c.Brand, c.Model
 ORDER BY Least_Expensive
 FETCH FIRST 1 ROWS ONLY;
 
-Query6- List all transactions along with customer names and car models.
+--Query6- List all transactions along with customer names and car models.
 SQL Commands:
 SELECT t.Transaction_id,
 c.C_name,
@@ -303,9 +300,8 @@ JOIN Customers c ON o.Customer_id = c.Customer_id
 JOIN Car car ON t.Car_id = car.Car_id
 ORDER BY t.Transaction_id;
 
-Query7- Generate a report of cars sold per year, including the total number of cars sold and the
-total revenue generated.
-SQL Commands:
+--Query7- Generate a report of cars sold per year, including the total number of cars sold and the total revenue generated.
+--SQL Commands:
 SELECT EXTRACT(YEAR FROM o.Order_date) AS Sale_Year,
 COUNT(o.Order_id) AS Total_Cars_Sold,
 SUM(o.Total_amount) AS Total_Revenue
@@ -313,8 +309,7 @@ FROM Orders o
 GROUP BY EXTRACT(YEAR FROM o.Order_date)
 ORDER BY Sale_Year DESC;
 
-Query8- Get a summary of sales for each month, showing the total sales and the number of
-transactions for each month.
+--Query8- Get a summary of sales for each month, showing the total sales and the number of transactions for each month.
 SQL Commands:
 SELECT TO_CHAR(o.Order_date, 'YYYY-MM') AS Sale_Month,
 COUNT(o.Order_id) AS Number_of_Transactions,
@@ -323,14 +318,11 @@ FROM Orders o
 GROUP BY TO_CHAR(o.Order_date, 'YYYY-MM')
 ORDER BY Sale_Month;
 
-Query9- Analyze customer spending patterns, including total spent, average spent per
-transaction, and rank customers based on their spending.
-Customer Spending Patterns Query:
-● This query calculates the total amount spent by each customer, the average spent per
-transaction, and assigns a rank based on total spending using window functions.
-● It uses CTEs to break down the process into manageable parts, making it easier to read
-and maintain.
-SQL Commands:
+--Query9- Analyze customer spending patterns, including total spent, average spent per transaction, and rank customers based on their spending.
+--Customer Spending Patterns Query:
+--● This query calculates the total amount spent by each customer, the average spent per transaction, and assigns a rank based on total spending using window functions.
+--● It uses CTEs to break down the process into manageable parts, making it easier to read and maintain.
+--SQL Commands:
 WITH Customer_Spending AS (
 SELECT cu.Customer_id,
 cu.C_name,
@@ -357,14 +349,14 @@ Spending_Rank
 FROM Ranked_Customers
 ORDER BY Spending_Rank;
 
-Query10-Brand Performance Analysis:Analyze the sales performance of different car brands,
+/*Query10-Brand Performance Analysis:Analyze the sales performance of different car brands,
 including total sales and average price, and identifies the best-selling brand.
 Brand Sales CTE: This CTE aggregates sales data for each car brand, calculating the total
 number of sales, total amount earned, and the average price of cars sold.
 Final SELECT Statement: Retrieves brand performance metrics and assigns a sales rank based
 on total sales amount, ordering the results by sales rank.
 
-SQL Commands:
+SQL Commands:*/
 WITH Brand_Sales AS (
 SELECT c.Brand,
 COUNT(o.Order_id) AS Total_Sales,
